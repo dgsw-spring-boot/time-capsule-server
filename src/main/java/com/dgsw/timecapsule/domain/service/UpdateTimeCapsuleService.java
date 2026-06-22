@@ -1,5 +1,6 @@
 package com.dgsw.timecapsule.domain.service;
 
+import com.dgsw.timecapsule.domain.dto.UpdateTimeCapsuleRequest;
 import com.dgsw.timecapsule.domain.entity.TimeCapsule;
 import com.dgsw.timecapsule.domain.repository.TimeCapsuleRepository;
 import com.dgsw.timecapsule.global.exception.CustomException;
@@ -12,19 +13,20 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class GetTimeCapsuleService {
+public class UpdateTimeCapsuleService {
     private final TimeCapsuleRepository timeCapsuleRepository;
 
     @Transactional
-    public TimeCapsule execute(Long id) {
+    public TimeCapsule execute(Long id, UpdateTimeCapsuleRequest request) {
         TimeCapsule timeCapsule = timeCapsuleRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND));
 
-        LocalDateTime now = LocalDateTime.now();
+        timeCapsule.setTitle(request.getTitle());
+        timeCapsule.setContent(request.getContent());
+        timeCapsule.setOpenAt(request.getOpenAt());
+        timeCapsule.setIsPublic(request.getIsPublic());
 
-        if (timeCapsule.getOpenAt().isAfter(now)) {
-            throw new CustomException(ErrorCode.FORBIDDEN);
-        }
+        timeCapsuleRepository.save(timeCapsule);
 
         return timeCapsule;
     }
