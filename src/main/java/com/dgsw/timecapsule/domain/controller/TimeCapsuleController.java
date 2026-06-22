@@ -7,8 +7,15 @@ import com.dgsw.timecapsule.domain.entity.TimeCapsule;
 import com.dgsw.timecapsule.domain.service.GetTimeCapsuleService;
 import com.dgsw.timecapsule.domain.service.UpdateTimeCapsuleService;
 import com.dgsw.timecapsule.global.response.ApiResponse;
+import com.dgsw.timecapsule.domain.dto.CapsuleRequestDTO;
+import com.dgsw.timecapsule.domain.dto.CapsuleResponseDTO;
+import com.dgsw.timecapsule.domain.service.CapsuleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/timecapsule")
@@ -16,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class TimeCapsuleController {
     private final GetTimeCapsuleService getTimeCapsuleService;
     private final UpdateTimeCapsuleService updateTimeCapsuleService;
+    private final CapsuleService capsuleService;
 
     @GetMapping("/{id}")
     public ApiResponse<GetTimeCapsuleResponse> findById(@RequestParam Long id) {
@@ -30,5 +38,10 @@ public class TimeCapsuleController {
     ) {
         TimeCapsule timeCapsule = updateTimeCapsuleService.execute(id, request);
         return ApiResponse.ok(UpdateTimeCapsuleResponse.to(timeCapsule));
+    }
+
+    @PostMapping("/capsule")
+    public ApiResponse<CapsuleResponseDTO> createCapsule(@RequestBody CapsuleRequestDTO request) {
+        return ApiResponse.ok(capsuleService.createCapsule(request));
     }
 }
