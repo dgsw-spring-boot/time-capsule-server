@@ -4,6 +4,7 @@ import com.dgsw.timecapsule.domain.dto.*;
 import com.dgsw.timecapsule.domain.entity.TimeCapsule;
 import com.dgsw.timecapsule.domain.service.*;
 import com.dgsw.timecapsule.global.response.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class TimeCapsuleController {
     @PutMapping("/{id}")
     public ApiResponse<UpdateTimeCapsuleResponse> UpdateById(
             @RequestParam Long id,
-            @RequestBody UpdateTimeCapsuleRequest request
+            @Valid @RequestBody UpdateTimeCapsuleRequest request
     ) {
         TimeCapsule timeCapsule = updateTimeCapsuleService.execute(id, request);
         return ApiResponse.ok(UpdateTimeCapsuleResponse.to(timeCapsule));
