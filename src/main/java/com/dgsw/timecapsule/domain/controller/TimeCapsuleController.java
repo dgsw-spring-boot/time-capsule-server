@@ -1,21 +1,17 @@
 package com.dgsw.timecapsule.domain.controller;
 
+import com.dgsw.timecapsule.domain.dto.CreateCapsuleRequest;
+import com.dgsw.timecapsule.domain.dto.CreateCapsuleResponse;
 import com.dgsw.timecapsule.domain.dto.GetTimeCapsuleResponse;
 import com.dgsw.timecapsule.domain.dto.UpdateTimeCapsuleRequest;
 import com.dgsw.timecapsule.domain.dto.UpdateTimeCapsuleResponse;
 import com.dgsw.timecapsule.domain.entity.TimeCapsule;
+import com.dgsw.timecapsule.domain.service.CapsuleService;
 import com.dgsw.timecapsule.domain.service.GetTimeCapsuleService;
 import com.dgsw.timecapsule.domain.service.UpdateTimeCapsuleService;
 import com.dgsw.timecapsule.global.response.ApiResponse;
-import com.dgsw.timecapsule.domain.dto.CreateCapsuleRequest;
-import com.dgsw.timecapsule.domain.dto.CreateCapsuleResponse;
-import com.dgsw.timecapsule.domain.service.CapsuleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/timecapsule")
