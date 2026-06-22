@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class GetTimeCapsuleService {
     private final TimeCapsuleRepository timeCapsuleRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public TimeCapsule execute(Long id) {
         TimeCapsule timeCapsule = timeCapsuleRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND));

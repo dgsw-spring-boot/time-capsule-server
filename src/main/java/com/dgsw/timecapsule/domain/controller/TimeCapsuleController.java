@@ -21,14 +21,14 @@ public class TimeCapsuleController {
     private final DeleteCapsuleService deleteCapsuleService;
 
     @GetMapping("/{id}")
-    public ApiResponse<GetTimeCapsuleResponse> findById(@RequestParam Long id) {
+    public ApiResponse<GetTimeCapsuleResponse> findById(@PathVariable Long id) {
         TimeCapsule timeCapsule = getTimeCapsuleService.execute(id);
         return ApiResponse.ok(GetTimeCapsuleResponse.to(timeCapsule));
     }
 
     @PutMapping("/{id}")
     public ApiResponse<UpdateTimeCapsuleResponse> UpdateById(
-            @RequestParam Long id,
+            @PathVariable Long id,
             @Valid @RequestBody UpdateTimeCapsuleRequest request
     ) {
         TimeCapsule timeCapsule = updateTimeCapsuleService.execute(id, request);

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -15,7 +14,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 public class TimeCapsule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,4 +38,11 @@ public class TimeCapsule {
 
     @Column
     private Boolean isPublic;
+
+    public void update(String title, String content, LocalDateTime openAt, Boolean isPublic) {
+        this.title = title;
+        this.content = content;
+        this.openAt = openAt;
+        this.isPublic = isPublic;
+    }
 }
