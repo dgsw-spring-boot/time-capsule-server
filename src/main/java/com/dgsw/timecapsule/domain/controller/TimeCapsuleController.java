@@ -7,8 +7,8 @@ import com.dgsw.timecapsule.domain.entity.TimeCapsule;
 import com.dgsw.timecapsule.domain.service.GetTimeCapsuleService;
 import com.dgsw.timecapsule.domain.service.UpdateTimeCapsuleService;
 import com.dgsw.timecapsule.global.response.ApiResponse;
-import com.dgsw.timecapsule.domain.dto.CapsuleRequestDTO;
-import com.dgsw.timecapsule.domain.dto.CapsuleResponseDTO;
+import com.dgsw.timecapsule.domain.dto.CreateCapsuleRequest;
+import com.dgsw.timecapsule.domain.dto.CreateCapsuleResponse;
 import com.dgsw.timecapsule.domain.service.CapsuleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +41,7 @@ public class TimeCapsuleController {
     }
 
     @PostMapping("/capsule")
-    public ApiResponse<CapsuleResponseDTO> createCapsule(@RequestBody CapsuleRequestDTO request) {
+    public ApiResponse<CreateCapsuleResponse> createCapsule(@RequestBody CreateCapsuleRequest request) {
         return ApiResponse.ok(capsuleService.createCapsule(request));
     }
 }
