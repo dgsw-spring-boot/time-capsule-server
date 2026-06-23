@@ -1,6 +1,6 @@
 package com.dgsw.timecapsule.domain.dto;
 
-import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -16,7 +16,7 @@ public class CreateCapsuleRequest {
     private String content;
 
     @NotNull(message = "개봉일은 필수입니다.")
-    @FutureOrPresent(message = "개봉일은 오늘 이후여야 합니다.")
+    @Future(message = "개봉 시각은 현재 시각보다 이후여야 합니다.")
     private LocalDateTime openAt;
 
     @NotNull
