@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
 @Service
 @RequiredArgsConstructor
 public class UpdateTimeCapsuleService {
@@ -21,12 +19,7 @@ public class UpdateTimeCapsuleService {
         TimeCapsule timeCapsule = timeCapsuleRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND));
 
-        timeCapsule.setTitle(request.getTitle());
-        timeCapsule.setContent(request.getContent());
-        timeCapsule.setOpenAt(request.getOpenAt());
-        timeCapsule.setIsPublic(request.getIsPublic());
-
-        timeCapsuleRepository.save(timeCapsule);
+        timeCapsule.update(request.getTitle(), request.getContent(), request.getOpenAt(), request.getIsPublic());
 
         return timeCapsule;
     }
