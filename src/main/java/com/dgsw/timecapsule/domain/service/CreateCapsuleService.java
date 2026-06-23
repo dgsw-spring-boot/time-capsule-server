@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CapsuleService {
+public class CreateCapsuleService {
     private final TimeCapsuleRepository capsuleRepository;
     public CreateCapsuleResponse createCapsule(CreateCapsuleRequest request) {
         TimeCapsule timeCapsule = new TimeCapsule(null,
