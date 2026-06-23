@@ -19,7 +19,7 @@ public class CreateCapsuleService {
                 null,
                 null,
                 request.getOpenAt(),
-                request.isPublic()
+                request.getIsPublic()
         );
 
         capsuleRepository.save(timeCapsule);

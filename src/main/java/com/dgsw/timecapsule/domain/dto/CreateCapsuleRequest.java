@@ -1,8 +1,8 @@
 package com.dgsw.timecapsule.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -19,6 +19,6 @@ public class CreateCapsuleRequest {
     @FutureOrPresent(message = "개봉일은 오늘 이후여야 합니다.")
     private LocalDateTime openAt;
 
-    @JsonProperty("isPublic")
-    private boolean isPublic;
+    @NotNull
+    private Boolean isPublic;
 }
