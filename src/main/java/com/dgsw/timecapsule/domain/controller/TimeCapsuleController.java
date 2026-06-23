@@ -36,7 +36,9 @@ public class TimeCapsuleController {
     }
 
     @PostMapping("/capsule")
-    public ApiResponse<CreateCapsuleResponse> createCapsule(@RequestBody CreateCapsuleRequest request) {
+    public ApiResponse<CreateCapsuleResponse> createCapsule(
+            @Valid @RequestBody CreateCapsuleRequest request
+    ) {
         return ApiResponse.ok(createCapsuleService.createCapsule(request));
     }
 
