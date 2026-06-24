@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CreateCapsuleService {
     private final TimeCapsuleRepository capsuleRepository;
-
     public CreateCapsuleResponse createCapsule(CreateCapsuleRequest request) {
         TimeCapsule timeCapsule = new TimeCapsule(null,
                 request.getTitle(),
@@ -19,7 +18,7 @@ public class CreateCapsuleService {
                 null,
                 null,
                 request.getOpenAt(),
-                request.getIsPublic()
+                request.isPublic()
         );
 
         capsuleRepository.save(timeCapsule);

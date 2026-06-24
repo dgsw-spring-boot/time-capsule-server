@@ -4,7 +4,6 @@ import com.dgsw.timecapsule.domain.dto.*;
 import com.dgsw.timecapsule.domain.entity.TimeCapsule;
 import com.dgsw.timecapsule.domain.service.*;
 import com.dgsw.timecapsule.global.response.ApiResponse;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,24 +20,22 @@ public class TimeCapsuleController {
     private final DeleteCapsuleService deleteCapsuleService;
 
     @GetMapping("/{id}")
-    public ApiResponse<GetTimeCapsuleResponse> findById(@PathVariable Long id) {
+    public ApiResponse<GetTimeCapsuleResponse> findById(@RequestParam Long id) {
         TimeCapsule timeCapsule = getTimeCapsuleService.execute(id);
         return ApiResponse.ok(GetTimeCapsuleResponse.to(timeCapsule));
     }
 
     @PutMapping("/{id}")
     public ApiResponse<UpdateTimeCapsuleResponse> UpdateById(
-            @PathVariable Long id,
-            @Valid @RequestBody UpdateTimeCapsuleRequest request
+            @RequestParam Long id,
+            @RequestBody UpdateTimeCapsuleRequest request
     ) {
         TimeCapsule timeCapsule = updateTimeCapsuleService.execute(id, request);
         return ApiResponse.ok(UpdateTimeCapsuleResponse.to(timeCapsule));
     }
 
     @PostMapping("/capsule")
-    public ApiResponse<CreateCapsuleResponse> createCapsule(
-            @Valid @RequestBody CreateCapsuleRequest request
-    ) {
+    public ApiResponse<CreateCapsuleResponse> createCapsule(@RequestBody CreateCapsuleRequest request) {
         return ApiResponse.ok(createCapsuleService.createCapsule(request));
     }
 
